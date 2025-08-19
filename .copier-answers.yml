@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier
+_commit: bd3cb96
+_src_path: https://github.com/monarch-initiative/monarch-project-copier
+copyright_year: '2025'
+email: my-name@my-org.orgjustinreese@lbl.gov
+full_name: Justin Reese
+gh_action_docs_preview: true
+github_handle: justaddcoffee
+github_org: monarch-initiative
+license: BSD-3-Clause
+project_description: Eval of MCPs that retrieve stuff to do with scientific literature
+project_name: mcp_literature_eval
+project_slug: mcp_literature_eval
+
