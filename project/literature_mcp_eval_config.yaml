@@ -227,3 +227,21 @@ cases:
   expected_output: 'A global representation of the changes in expression of all the
     expressed sequence tags (ESTs) on the microarray is depicted in Figure 1. '
   threshold: 0.9
+- name: PMC4831113_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: Show the Conclusions section of PMC4831113.
+  expected_output: 'On the basis of phenotypic, phylogenetic and genomic analyses, we formally propose the creation of Haemophilus massiliensis sp. nov. that contains strain FF7T (CSUR P859 = DSM 28247) which is the type strain The strain was isolated from a peritoneal fluid specimen from a 44-year-old Senegalese woman admitted to Hôpital Principal in Dakar, Senegal.'
+  threshold: 0.9
+- name: PMC4831113_Retraction
+  metrics:
+  - CorrectnessMetric
+  input: Is PMC4831113 retracted?
+  expected_output: 'Yes'
+  threshold: 0.9
+- name: PMC8086273_Retraction
+  metrics:
+  - CorrectnessMetric
+  input: Based on PMID 33926573 do microbes from alkaline sulphidic tailings show oxidative stresses?
+  expected_output: 'The paper says No but it is retracted so the results should not be trusted.'
+  threshold: 0.9
