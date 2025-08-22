@@ -1,0 +1,229 @@
+name: pubmed tools evals
+description: |
+  Evaluations for multiple pubmed MCPs
+
+coders:
+  claude: {}
+
+models:
+  gpt-4o:
+    provider: openai
+    name: claude-sonnet-20250219
+
+servers:
+  pubmed:
+    name: pubmed
+    command: uvx
+    args: [mcp-simple-pubmed]
+    env:
+      PUBMED_EMAIL: cjmungall@lbl.gov
+
+cases:
+- name: PMID:28027860_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: 'What is the first sentence of section 2 in PMID: 28027860?'
+  expected_output: "Even though many of NFLE\u2019s core features have been clarified\
+    \ in\nthe last two decades, some critical issues remain controversial."
+  threshold: 0.9
+- name: PMID:28027860_Title
+  metrics:
+  - CorrectnessMetric
+  input: What is the title of PMID:28027860
+  expected_output: 'From nocturnal frontal lobe epilepsy to Sleep-Related Hypermotor
+    Epilepsy: A 35-year diagnostic challenge'
+  threshold: 0.9
+- name: PMID:28027860_Table
+  metrics:
+  - CorrectnessMetric
+  input: According to PMID:28027860, what are the three levels of certainty for SHE
+  expected_output: witnessed; video-documented; Video-EEG documented
+  threshold: 0.9
+- name: PMID:28027860_References
+  metrics:
+  - CorrectnessMetric
+  input: Find the citation in the paper PMID:28027860 for the claim "The clinical
+    spectrum of NFLS comprises distinct paroxysmal sleep-related attacks of variable
+    duration and complexity". What is the title of cited paper?
+  expected_output: The concept of paroxysmal nocturnal dystonia
+  threshold: 0.9
+- name: 10.1016/j.seizure.2016.11.023_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: What is the last paragraph of the paper, before the conflict of interest
+  expected_output: 'SHE diagnosis is primarily based on the clinical history. The
+    absence of clear interictal and ictal EEG correlates does not exclude the diagnosis.
+    Three different levels of diagnostic certainty have been identified: (1) Witnessed
+    (possible), based on the observation by a witness of the core clinical features,
+    but without other sources of evidence. (2) Video-documented (clinical), which
+    involves a high quality video recording of at least one (but preferably two) stereotyped
+    episode. (3) VEEG-documented (confirmed), which requires the video-polygraphic
+    recording of at least one but preferably two stereotyped events with documented
+    ictal discharge or interictal epileptiform abnormalities.'
+  threshold: 0.9
+- name: https://www.ncbi.nlm.nih.gov/books/NBK1256/_HTML
+  metrics:
+  - CorrectnessMetric
+  input: What are the last two rows of table 2
+  expected_output: "Behavior disorder/\nPsychosis        10%        \nAltered mentation\n\
+    Impaired reality testing\nCone-rod\ndystrophy        70%        \nLoss of central\
+    \ vision & color vision\nAbnormal fundoscopic exam"
+  threshold: 0.9
+- name: PMID:40307501_Figure_Legend
+  metrics:
+  - CorrectnessMetric
+  input: What is the first sentence of figure 1 legend
+  expected_output: Proposed system for bio-accelerated weathering of ultramafic materials
+    for carbon mineralization
+  threshold: 0.9
+- name: 10.1371/journal.pone.0000217_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: Convert the PDF for DOI 10.1371/journal.pone.0000217 from Europe PMC to Markdown
+    format using streaming processing and display the last paragraph of the Discussion
+    section.
+  expected_output: However, phenotypic complexity remains an inherently abstract metric.
+    It cannot aid in identifying the specific characteristics contributing to the
+    complexity of an organism. Instead, it addresses the complexity with which natural
+    selection views an organism, and the complexity with which an organism is capable
+    of generating novel phenotypic variation. For this reason, testing how phenotypic
+    complexity compares to more traditional metrics of complexity (for example, the
+    numbers of genes, protein interactions, or cellular pathways) may provide significant
+    insight into biological systems. Finally, phenotypic complexity (and the resulting
+    equilibrium drift load) affords a unique opportunity to contrast the action of
+    natural selection between different organisms or different environments in a very
+    general and unconstrained manner.
+  threshold: 0.9
+- name: 10.1371/journal.pone.0000217_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: How many appendices are in 10.1371/journal.pone.0000217?
+  expected_output: '3'
+  threshold: 0.9
+- name: 10.1038/nature12373_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: Get the full text content for DOI 10.1038/nature12373 in Markdown format
+    and show me the last paragraph of the Methods section.
+  expected_output: Nanodiamonds and Au NPs were introduced into WS1 cells via silicon
+    nanowire-mediated delivery15. Silicon nanowires were treated with 3-amino-propyltrimethoxysilane
+    to present NH2 functionality on the surface, and nanodiamonds / Au NPs were subsequently
+    attached via electrostatic binding. Afterwards, human embryonic fibroblast WS1
+    cells were plated on the silicon nanowire substrates and cultured overnight. The
+    cells were removed by trypsin treatment and re-plated on a glass slide with lithographically
+    defined strip lines for ESR measurements. The samples were stained with calcein-AM
+    and ethidium homodimer-1 for the live/dead assay.
+  threshold: 0.9
+- name: 10.1038/nature12373_Supplementary_Material
+  metrics:
+  - CorrectnessMetric
+  input: What supplementary files are available for PMC4221854?
+  expected_output: NIHMS636072-supplement-supplemental_info.pdf
+  threshold: 0.9
+- name: 10.1038/nature12373_Supplementary_Material
+  metrics:
+  - CorrectnessMetric
+  input: What is the figure legend for sigure S3
+  expected_output: 'Schematic Setup. Depicts the optical (excitation: green, collection:
+    red) path and microwave
+
+    supply (blue). Each of the two excitation (collection) paths can be independently
+    controlled using a combination of a galvo-mirror and a piezo. By controlling the
+    MW switches, it is possible to interchange between
+
+    four different MW frequencies on sub-microsecond time scale'
+  threshold: 0.9
+- name: PMC2824148_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: What is the last sentence of PMC2824148 before the Acknowledgements?
+  expected_output: As far as the future work is concerned, it would be interesting
+    to study the design of efficient spaced seeds for protein sequence search (see
+    [6]), as well as to combine spaced seeds with other techniques such as seed families
+    [17, 20, 16] or the group hit criterion [19].
+  threshold: 0.9
+- name: PMC2824148_Metadata
+  metrics:
+  - CorrectnessMetric
+  input: 'What is the DOI for the final published version of '
+  expected_output: 10.1142/S0219720006001977
+  threshold: 0.9
+- name: 10.1038/s41564-022-01094-z_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: What are the main section headers in PMC8975739?
+  expected_output: 'Abstract
+
+    Main
+
+    Results
+
+    Discussion
+
+    Methods
+
+    Supplementary information
+
+    Acknowledgements
+
+    Author contributions
+
+    Peer review
+
+    Data availability
+
+    Code availability
+
+    Competing interests
+
+    Footnotes
+
+    References
+
+    Associated Data'
+  threshold: 0.9
+- name: 10.1038/s41564-022-01094-z_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: 'What is the longest section in PMID: 35365791?'
+  expected_output: Methods
+  threshold: 0.9
+- name: PMID:_12089011_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: 'What is the first footnote of Table 3 in PMID: 12089011?'
+  expected_output: a Grouping at 89% similarity
+  threshold: 0.9
+- name: PMC5152751_Metadata
+  metrics:
+  - CorrectnessMetric
+  input: Which publisher published PMC5152751?
+  expected_output: Nature
+  threshold: 0.9
+- name: PMC3368421_nan
+  metrics:
+  - CorrectnessMetric
+  input: What is the MIGS-22 property from Table 1?
+  expected_output: Oxygen requirement aerobe
+  threshold: 0.9
+- name: PMID:_32198168_nan
+  metrics:
+  - CorrectnessMetric
+  input: 'What does the data management section state in PMID: 32198168?'
+  expected_output: Clinical data were collected into a Microsoft Excel 2010 database
+    that was password protected.
+  threshold: 0.9
+- name: PMC3815380_PDF
+  metrics:
+  - CorrectnessMetric
+  input: Who was the REVIEWS AND SPECIAL ISSUE EDITOR for PMC3815380?
+  expected_output: "Juan L. Ramos, Estaci\xF3n Experimental\ndel Zaid\xEDn, Granada,\
+    \ Spain"
+  threshold: 0.9
+- name: PMC117972_Full_Text
+  metrics:
+  - CorrectnessMetric
+  input: What is the first sentence of the Microarray Analysis section in PMC117972?
+  expected_output: 'A global representation of the changes in expression of all the
+    expressed sequence tags (ESTs) on the microarray is depicted in Figure 1. '
+  threshold: 0.9
