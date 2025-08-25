@@ -20,6 +20,7 @@ dynamic = ["version"]
 dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
+  "metacoder>=0.1.0",
 ]
 
 [dependency-groups]
