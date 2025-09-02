@@ -20,7 +20,7 @@ dynamic = ["version"]
 dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
-  "metacoder",
+  "metacoder>=0.1.0",
 ]
 
 [dependency-groups]
@@ -83,4 +83,4 @@ extend-exclude = [
 ]
 
 [tool.uv.sources]
-metacoder = { git = "https://github.com/ai4curation/metacoder.git", branch = "literature-eval-issues" }
+metacoder = { git = "https://github.com/ai4curation/metacoder.git" }
