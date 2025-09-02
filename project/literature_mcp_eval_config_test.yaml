@@ -2,21 +2,29 @@ name: pubmed tools evals
 description: |
   Evaluations for multiple pubmed MCPs
 
+
 coders:
   goose: {}
 
 models:
-  claude-4-sonnet:
+  gpt-4o:
     provider: anthropic
     name: claude-sonnet-4-20250514
 
 servers:
-  pubmed:
+  mcp-simple-pubmed:
     name: pubmed
     command: uvx
     args: [mcp-simple-pubmed]
     env:
-      PUBMED_EMAIL: ctparker@lbl.gov
+      PUBMED_EMAIL: cjmungall@lbl.gov
+  ols-mcp:
+    name: ols
+    command: uvx
+    args: [mcp-ols]
+
+server_combinations:
+  - [mcp-simple-pubmed, ols-mcp]
 
 cases:
 - name: PMID_28027860_Full_Text

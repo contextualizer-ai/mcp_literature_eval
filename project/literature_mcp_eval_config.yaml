@@ -9,9 +9,6 @@ models:
   claude-4-sonnet:
     provider: anthropic
     name: claude-sonnet-4-20250514
-#  gpt-4o:
-#    provider: openai
-#    name: ?
 
 servers:
   pubmed:
@@ -19,7 +16,10 @@ servers:
     command: uvx
     args: [mcp-simple-pubmed]
     env:
-      PUBMED_EMAIL: cjmungall@lbl.gov
+      PUBMED_EMAIL: ctparker@lbl.gov
+
+server_combinations:
+  - [mcp-simple-pubmed]
 
 cases:
 - name: PMID_28027860_Full_Text
