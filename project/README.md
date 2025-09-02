@@ -4,3 +4,11 @@ This directory holds the output generated with [LinkML generators](https://linkm
 from the model in `src/mcp_literature_eval/datamodel/schema/mcp_literature_eval.yaml`.
 Generators transform a linkml schema into another datamodel such as SQL or RDF, or into other artefacts,
 such as JSON-Schema, a visualisation, or markdown documentation.
+
+# The current version relies on a specific branch of metacoder.
+# To update the dependencies:
+uv lock --upgrade-package metacoder
+uv sync --reinstall
+
+# To run the test eval:
+uv run metacoder eval .\project\literature_mcp_eval_config_test.yaml
