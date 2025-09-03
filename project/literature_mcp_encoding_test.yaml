@@ -29,7 +29,9 @@ servers:
     args: [mcp-ols]
 
 server_combinations:
-  - [artl, simple-pubmed, ols]
+  - [artl]
+  - [simple-pubmed]
+#  - [ols]
 
 cases:
 - name: PMC8086273_Retraction

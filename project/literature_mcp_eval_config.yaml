@@ -28,7 +28,9 @@ servers:
     args: [mcp-ols]
 
 server_combinations:
-  - [artl, simple-pubmed, ols]
+  - [artl]
+  - [simple-pubmed]
+#  - [ols]
 
 cases:
 - name: PMID_28027860_Full_Text
