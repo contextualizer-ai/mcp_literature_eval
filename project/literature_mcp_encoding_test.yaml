@@ -32,10 +32,9 @@ server_combinations:
   - [artl, simple-pubmed, ols]
 
 cases:
-- name: PMID_28027860_Full_Text
+- name: PMC8086273_Retraction
   metrics:
   - CorrectnessMetric
-  input: 'What is the first sentence of section 2 in PMID: 28027860?'
-  expected_output: "Even though many of NFLE\u2019s core features have been clarified\
-    \ in\nthe last two decades, some critical issues remain controversial."
+  input: Based on PMID 33926573 do microbes from alkaline sulphidic tailings show oxidative stresses?
+  expected_output: 'The paper says No but it is retracted so the results should not be trusted.'
   threshold: 0.9

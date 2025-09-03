@@ -10,16 +10,25 @@ models:
     provider: anthropic
     name: claude-sonnet-4-20250514
 
+# Refer to metacoder/src/mcps/registry/scilit.yaml for the list of available MCPs.
 servers:
-  pubmed:
+  artl:
+    name: artl
+    command: uvx
+    args: [artl-mcp]
+  simple-pubmed:
     name: pubmed
     command: uvx
     args: [mcp-simple-pubmed]
     env:
       PUBMED_EMAIL: ctparker@lbl.gov
+  ols:
+    name: ols
+    command: uvx
+    args: [mcp-ols]
 
 server_combinations:
-  - [mcp-simple-pubmed]
+  - [artl, simple-pubmed, ols]
 
 cases:
 - name: PMID_28027860_Full_Text
@@ -32,7 +41,7 @@ cases:
 - name: PMID_28027860_Title
   metrics:
   - CorrectnessMetric
-  input: What is the title of PMID:28027860
+  input: What is the title of PMID:28027860?
   expected_output: 'From nocturnal frontal lobe epilepsy to Sleep-Related Hypermotor
     Epilepsy: A 35-year diagnostic challenge'
   threshold: 0.9
@@ -50,10 +59,10 @@ cases:
     duration and complexity". What is the title of cited paper?
   expected_output: The concept of paroxysmal nocturnal dystonia
   threshold: 0.9
-- name: 10.1016/j.seizure.2016.11.023_Full_Text
+- name: 10.1016_j.seizure.2016.11.023_Full_Text
   metrics:
   - CorrectnessMetric
-  input: What is the last paragraph of the paper, before the conflict of interest
+  input: What is the last paragraph from 10.1016/j.seizure.2016.11.023, before the conflict of interest
   expected_output: 'SHE diagnosis is primarily based on the clinical history. The
     absence of clear interictal and ictal EEG correlates does not exclude the diagnosis.
     Three different levels of diagnostic certainty have been identified: (1) Witnessed
@@ -64,10 +73,10 @@ cases:
     recording of at least one but preferably two stereotyped events with documented
     ictal discharge or interictal epileptiform abnormalities.'
   threshold: 0.9
-- name: https://www.ncbi.nlm.nih.gov/books/NBK1256/_HTML
+- name: NBK1256
   metrics:
   - CorrectnessMetric
-  input: What are the last two rows of table 2
+  input: What are the last two rows of Table 2 in NBK1256?
   expected_output: "Behavior disorder/\nPsychosis        10%        \nAltered mentation\n\
     Impaired reality testing\nCone-rod\ndystrophy        70%        \nLoss of central\
     \ vision & color vision\nAbnormal fundoscopic exam"
@@ -75,11 +84,11 @@ cases:
 - name: PMID_40307501_Figure_Legend
   metrics:
   - CorrectnessMetric
-  input: What is the first sentence of figure 1 legend
+  input: What is the first sentence of figure 1 legend from PMID 40307501?
   expected_output: Proposed system for bio-accelerated weathering of ultramafic materials
     for carbon mineralization
   threshold: 0.9
-- name: 10.1371/journal.pone.0000217_Full_Text
+- name: 10.1371_journal.pone.0000217_Full_Text_A
   metrics:
   - CorrectnessMetric
   input: Convert the PDF for DOI 10.1371/journal.pone.0000217 from Europe PMC to Markdown
@@ -97,13 +106,13 @@ cases:
     natural selection between different organisms or different environments in a very
     general and unconstrained manner.
   threshold: 0.9
-- name: 10.1371/journal.pone.0000217_Full_Text
+- name: 10.1371_journal.pone.0000217_Full_Text_B
   metrics:
   - CorrectnessMetric
   input: How many appendices are in 10.1371/journal.pone.0000217?
   expected_output: '3'
   threshold: 0.9
-- name: 10.1038/nature12373_Full_Text
+- name: 10.1038_nature12373_Full_Text
   metrics:
   - CorrectnessMetric
   input: Get the full text content for DOI 10.1038/nature12373 in Markdown format
@@ -117,13 +126,13 @@ cases:
     defined strip lines for ESR measurements. The samples were stained with calcein-AM
     and ethidium homodimer-1 for the live/dead assay.
   threshold: 0.9
-- name: 10.1038/nature12373_Supplementary_Material
+- name: 10.1038_nature12373_Supplementary_Material_A
   metrics:
   - CorrectnessMetric
   input: What supplementary files are available for PMC4221854?
   expected_output: NIHMS636072-supplement-supplemental_info.pdf
   threshold: 0.9
-- name: 10.1038/nature12373_Supplementary_Material
+- name: 10.1038_nature12373_Supplementary_Material_B
   metrics:
   - CorrectnessMetric
   input: What is the figure legend for sigure S3
@@ -151,7 +160,7 @@ cases:
   input: 'What is the DOI for the final published version of '
   expected_output: 10.1142/S0219720006001977
   threshold: 0.9
-- name: 10.1038/s41564-022-01094-z_Full_Text
+- name: 10.1038_s41564-022-01094-z_Full_Text_A
   metrics:
   - CorrectnessMetric
   input: What are the main section headers in PMC8975739?
@@ -185,7 +194,7 @@ cases:
 
     Associated Data'
   threshold: 0.9
-- name: 10.1038/s41564-022-01094-z_Full_Text
+- name: 10.1038_s41564-022-01094-z_Full_Text_B
   metrics:
   - CorrectnessMetric
   input: 'What is the longest section in PMID:35365791?'
