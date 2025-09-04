@@ -33,7 +33,7 @@ server_combinations:
 
 cases:
 - name: PMID_28027860_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: 'What is the first sentence of section 2 in PMID: 28027860?'
@@ -42,7 +42,7 @@ cases:
   threshold: 0.9
 
 - name: PMID_28027860_Title
-  case_category: Metadata
+  group: Metadata
   metrics:
   - CorrectnessMetric
   input: What is the title of PMID:28027860?
@@ -51,7 +51,7 @@ cases:
   threshold: 0.9
 
 - name: PMID_28027860_Table
-  case_category: Summarization
+  group: Summarization
   metrics:
   - CorrectnessMetric
   input: According to PMID:28027860, what are the three levels of certainty for SHE
@@ -59,7 +59,7 @@ cases:
   threshold: 0.9
 
 - name: PMID_28027860_References
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: Find the citation in the paper PMID:28027860 for the claim "The clinical
@@ -69,7 +69,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1016_j.seizure.2016.11.023_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: What is the last paragraph from 10.1016/j.seizure.2016.11.023, before the conflict of interest
@@ -77,7 +77,7 @@ cases:
   threshold: 0.9
 
 - name: NBK1256
-  case_category: Table / Figure / Figure Legend extraction
+  group: Table / Figure / Figure Legend extraction
   metrics:
   - CorrectnessMetric
   input: What are the last two rows of Table 2 in NBK1256?
@@ -85,7 +85,7 @@ cases:
   threshold: 0.9
 
 - name: PMID_40307501_Figure_Legend
-  case_category: Table / Figure / Figure Legend extraction
+  group: Table / Figure / Figure Legend extraction
   metrics:
   - CorrectnessMetric
   input: What is the first sentence of figure 1 legend from PMID 40307501?
@@ -93,7 +93,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1371_journal.pone.0000217_Full_Text_A
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: Convert the PDF for DOI 10.1371/journal.pone.0000217...
@@ -101,7 +101,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1371_journal.pone.0000217_Full_Text_B
-  case_category: Supplementary material
+  group: Supplementary material
   metrics:
   - CorrectnessMetric
   input: How many appendices are in 10.1371/journal.pone.0000217?
@@ -109,7 +109,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1038_nature12373_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: Get the full text content for DOI 10.1038/nature12373...
@@ -117,7 +117,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1038_nature12373_Supplementary_Material_A
-  case_category: Supplementary material
+  group: Supplementary material
   metrics:
   - CorrectnessMetric
   input: What supplementary files are available for PMC4221854?
@@ -125,7 +125,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1038_nature12373_Supplementary_Material_B
-  case_category: Supplementary material
+  group: Supplementary material
   metrics:
   - CorrectnessMetric
   input: What is the figure legend for Figure S3
@@ -133,7 +133,7 @@ cases:
   threshold: 0.9
 
 - name: PMC2824148_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: What is the last sentence of PMC2824148 before the Acknowledgements?
@@ -141,7 +141,7 @@ cases:
   threshold: 0.9
 
 - name: PMC2824148_Metadata
-  case_category: Metadata
+  group: Metadata
   metrics:
   - CorrectnessMetric
   input: 'What is the DOI for the final published version of '
@@ -149,7 +149,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1038_s41564-022-01094-z_Full_Text_A
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: What are the main section headers in PMC8975739?
@@ -157,7 +157,7 @@ cases:
   threshold: 0.9
 
 - name: 10.1038_s41564-022-01094-z_Full_Text_B
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: 'What is the longest section in PMID:35365791?'
@@ -165,7 +165,7 @@ cases:
   threshold: 0.9
 
 - name: PMID_12089011_Full_Text
-  case_category: Table / Figure / Figure Legend extraction
+  group: Table / Figure / Figure Legend extraction
   metrics:
   - CorrectnessMetric
   input: 'What is the first footnote of Table 3 in PMID:12089011?'
@@ -173,7 +173,7 @@ cases:
   threshold: 0.9
 
 - name: PMC5152751_Metadata
-  case_category: Metadata
+  group: Metadata
   metrics:
   - CorrectnessMetric
   input: Which publisher published PMC5152751?
@@ -181,7 +181,7 @@ cases:
   threshold: 0.9
 
 - name: PMC3368421_nan
-  case_category: Table / Figure / Figure Legend extraction
+  group: Table / Figure / Figure Legend extraction
   metrics:
   - CorrectnessMetric
   input: What is the MIGS-22 property from Table 1?
@@ -189,7 +189,7 @@ cases:
   threshold: 0.9
 
 - name: PMID_32198168_nan
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: 'What does the data management section state in PMID:32198168?'
@@ -197,7 +197,7 @@ cases:
   threshold: 0.9
 
 - name: PMC3815380_PDF
-  case_category: Metadata
+  group: Metadata
   metrics:
   - CorrectnessMetric
   input: Who was the REVIEWS AND SPECIAL ISSUE EDITOR for PMC3815380?
@@ -205,7 +205,7 @@ cases:
   threshold: 0.9
 
 - name: PMC117972_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: What is the first sentence of the Microarray Analysis section in PMC117972?
@@ -213,7 +213,7 @@ cases:
   threshold: 0.9
 
 - name: PMC4831113_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: Show the Conclusions section of PMC4831113.
@@ -221,7 +221,7 @@ cases:
   threshold: 0.9
 
 - name: PMC4831113_Retraction
-  case_category: Publication status
+  group: Publication status
   metrics:
   - CorrectnessMetric
   input: Is PMC4831113 retracted?
@@ -232,7 +232,7 @@ cases:
 # like an extremely difficult case that even a good LLM + MCP might not pass. We've
 # made some edits to give the LLM + MCP a fair chance
 - name: PMC8086273_Retraction
-  case_category: Summarization
+  group: Summarization
   metrics:
   - CorrectnessMetric
   input: Based on PMID 33926573 do microbes from alkaline sulphidic tailings show oxidative stresses? Is this finding from this paper reliable?
