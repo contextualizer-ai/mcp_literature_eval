@@ -20,6 +20,7 @@ dynamic = ["version"]
 dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
+  "metacoder",
 ]
 
 [dependency-groups]
@@ -81,3 +82,6 @@ extend-exclude = [
   "src/mcp_literature_eval/datamodel/mcp_literature_eval_pydantic.py",
   "src/mcp_literature_eval/datamodel/mcp_literature_eval.py",
 ]
+
+[tool.uv.sources]
+metacoder = { git = "https://github.com/ai4curation/metacoder.git", branch = "literature-eval-enhancements" }

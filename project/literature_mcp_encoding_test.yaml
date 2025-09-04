@@ -1,0 +1,42 @@
+name: pubmed tools evals
+description: |
+  Evaluations for multiple pubmed MCPs
+
+
+coders:
+  goose: {}
+
+models:
+  claude-sonnet:
+    provider: anthropic
+    name: claude-sonnet-4-20250514
+
+# Refer to metacoder/src/mcps/registry/scilit.yaml for the list of available MCPs.
+servers:
+  artl:
+    name: artl
+    command: uvx
+    args: [artl-mcp]
+  simple-pubmed:
+    name: pubmed
+    command: uvx
+    args: [mcp-simple-pubmed]
+    env:
+      PUBMED_EMAIL: ctparker@lbl.gov
+  ols:
+    name: ols
+    command: uvx
+    args: [mcp-ols]
+
+server_combinations:
+  - [artl]
+  - [simple-pubmed]
+#  - [ols]
+
+cases:
+- name: PMC8086273_Retraction
+  metrics:
+  - CorrectnessMetric
+  input: Based on PMID 33926573 do microbes from alkaline sulphidic tailings show oxidative stresses?
+  expected_output: 'The paper says No but it is retracted so the results should not be trusted.'
+  threshold: 0.9
