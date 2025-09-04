@@ -36,7 +36,7 @@ server_combinations:
 
 cases:
 - name: PMID_28027860_Full_Text
-  case_category: Text extraction
+  group: Text extraction
   metrics:
   - CorrectnessMetric
   input: 'What is the first sentence of section 2 in PMID: 28027860?'
@@ -48,7 +48,7 @@ cases:
 # like an extremely difficult case that even a good LLM + MCP might not pass. We've
 # made some edits to give the LLM + MCP a fair chance
 - name: PMC8086273_Retraction
-  case_category: Summarization
+  group: Summarization
   metrics:
   - CorrectnessMetric
   input: Based on PMID 33926573 do microbes from alkaline sulphidic tailings show oxidative stresses?
