@@ -30,6 +30,7 @@ dev = [
     "mkdocs-material>=8.2.8",
     "mkdocs-mermaid2-plugin>=1.1.1",
     "jupyter>=1.0.0",
+    "matplotlib>=3.0.0",
     "mknotebooks>= 0.8.0",
 ]
 
