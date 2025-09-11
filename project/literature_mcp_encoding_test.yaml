@@ -2,7 +2,6 @@ name: pubmed tools evals
 description: |
   Evaluations for multiple pubmed MCPs
 
-
 coders:
   goose: {}
 
@@ -23,15 +22,29 @@ servers:
     args: [mcp-simple-pubmed]
     env:
       PUBMED_EMAIL: ctparker@lbl.gov
-  ols:
-    name: ols
-    command: uvx
-    args: [mcp-ols]
+  biomcp:
+    name: biomcp
+    command: uv
+    args: ["run", "--with", "biomcp-python", "biomcp", "run"]
+  pubmed-mcp:
+    name: pubmed-mcp
+    command: uv
+    args: ["run", "--with", "git+https://github.com/chrismannina/pubmed-mcp@main", "-m", "src.main"]
+    env:
+      PUBMED_API_KEY: "01eec0a16472164c6d69163bd28368311808"
+#  pubmed-mcp-server: # having some trouble getting goose to recognize this one
+#    name: pubmed-mcp-server
+#    command: uv
+#    args: [ "run", "--with", "git+https://github.com/hanxuanliang/pubmed-mcp-server@main", "-m", "src.main" ]
+#    env:
+#      DOWNLOAD_PATH: eval_workdir
 
 server_combinations:
   - [artl]
   - [simple-pubmed]
-#  - [ols]
+  - [biomcp]
+  - [pubmed-mcp]
+#  - [pubmed-mcp-server]
 
 cases:
 - name: PMC8086273_Retraction
