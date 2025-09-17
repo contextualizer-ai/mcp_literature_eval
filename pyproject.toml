@@ -21,6 +21,7 @@ dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
   "metacoder",
+  "pypdf>=6.0.0",
 ]
 
 [dependency-groups]

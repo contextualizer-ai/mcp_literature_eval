@@ -71,7 +71,7 @@ cases:
   expected_output: "The concept of paroxysmal nocturnal dystonia"
   threshold: 0.9
 
-- name: 10.1016_j.seizure.2016.11.023_Full_Text
+- name: 10_1016_j_seizure_2016_11_023_Full_Text
   group: "Text extraction"
   metrics:
   - CorrectnessMetric
@@ -79,6 +79,7 @@ cases:
   expected_output: "SHE diagnosis is primarily based on the clinical history."
   threshold: 0.9
 
+# often randomly hangs on this test
 - name: NBK1256
   group: "Table / Figure / Figure Legend extraction"
   metrics:
@@ -96,7 +97,7 @@ cases:
   expected_output: "Proposed system for bio-accelerated weathering of ultramafic materials for carbon mineralization."
   threshold: 0.9
 
-- name: 10.1371_journal.pone.0000217_Full_Text_A
+- name: 10_1371_journal_pone_0000217_Full_Text_A
   group: "Text extraction"
   metrics:
   - CorrectnessMetric
@@ -104,7 +105,7 @@ cases:
   expected_output: "However, phenotypic complexity remains an inherently abstract metric."
   threshold: 0.9
 
-- name: 10.1371_journal.pone.0000217_Full_Text_B
+- name: 10_1371_journal_pone_0000217_Full_Text_B
   group: "Supplementary material"
   metrics:
   - CorrectnessMetric
@@ -112,7 +113,7 @@ cases:
   expected_output: "3"
   threshold: 0.9
 
-- name: 10.1038_nature12373_Full_Text
+- name: 10_1038_nature12373_Full_Text
   group: "Text extraction"
   metrics:
   - CorrectnessMetric
@@ -120,7 +121,7 @@ cases:
   expected_output: "Nanodiamond measurement pulse sequence."
   threshold: 0.9
 
-- name: 10.1038_nature12373_Supplementary_Material_A
+- name: 10_1038_nature12373_Supplementary_Material_A
   group: "Supplementary material"
   metrics:
   - CorrectnessMetric
@@ -129,14 +130,12 @@ cases:
   threshold: 0.9
 
 # Requires download of supplemental file and text extraction.
-- name: 10.1038_nature12373_Supplementary_Material_B
+- name: 10_1038_nature12373_Supplementary_Material_B
   group: "Supplementary material"
   metrics:
   - CorrectnessMetric
   input: "What is the figure legend for Figure S3 in 10.1038/nature12373?"
-  expected_output: "Fluorescence spectrum under green excitation of gold nanoparticles (blue data) and nanodiamonds
-(red data). The shaded region indicates the bandpass filter used for detection of gold. The arrows
-mark the respective y-axis scaling for each curve."
+  expected_output: "Fluorescence spectrum under green excitation of gold nanoparticles (blue data) and nanodiamonds (red data). The shaded region indicates the bandpass filter used for detection of gold. The arrows mark the respective y-axis scaling for each curve."
   threshold: 0.9
 
 # Acknowledgments vs Acknowledgements?
@@ -156,7 +155,7 @@ mark the respective y-axis scaling for each curve."
   expected_output: "10.1142/S0219720006001977"
   threshold: 0.9
 
-- name: 10.1038_s41564-022-01094-z_Full_Text_A
+- name: 10_1038_s41564_022_01094_z_Full_Text_A
   group: "Text extraction"
   metrics:
   - CorrectnessMetric
@@ -164,7 +163,7 @@ mark the respective y-axis scaling for each curve."
   expected_output: "Abstract,Main,Results,Discussion,Methods,Supplementary information,Acknowledgements,Author contributions,Peer review,Data availability,Code availability,Competing interests,Footnotes,References,Associated Data"
   threshold: 0.9
 
-- name: 10.1038_s41564-022-01094-z_Full_Text_B
+- name: 10_1038_s41564_022_01094_z_Full_Text_B
   group: "Text extraction"
   metrics:
   - CorrectnessMetric
@@ -213,6 +212,7 @@ mark the respective y-axis scaling for each curve."
   expected_output: "Juan L. Ramos"
   threshold: 0.9
 
+# pubmedmcp consistently hangs on this test case
 - name: PMC117972_Full_Text
   group: "Text extraction"
   metrics:
