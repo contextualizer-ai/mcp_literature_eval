@@ -34,6 +34,7 @@ dev = [
     "jupyter>=1.0.0",
     "matplotlib>=3.0.0",
     "mknotebooks>= 0.8.0",
+    "types-pyyaml>=6.0.12.20250915",
 ]
 
 [project.scripts]
