@@ -11,7 +11,12 @@
 #
 # tests/test_goose.py
 from __future__ import annotations
-import logging, os, platform, re, shutil, subprocess
+import logging
+import os
+import platform
+import re
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
