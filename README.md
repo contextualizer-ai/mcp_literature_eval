@@ -39,8 +39,10 @@ uv sync --reinstall
 ### Quick Start
 
 ```bash
-# Run a small test suite
-uv run metacoder eval project/literature_mcp_eval_config_test.yaml
+# Run a small test suite with claude-code
+uv run metacoder eval project/literature_mcp_eval_config_test.yaml \
+  -c claude \
+  -o results/raw/test_$(date +%Y%m%d).yaml
 ```
 
 ### Full Evaluation
@@ -48,12 +50,17 @@ uv run metacoder eval project/literature_mcp_eval_config_test.yaml
 ```bash
 # Run with goose agent (baseline)
 uv run metacoder eval project/literature_mcp_eval_config.yaml \
-  -o results/mcp_literature_eval_results_goose_$(date +%Y%m%d).yaml
+  -o results/raw/goose_full_$(date +%Y%m%d).yaml
 
 # Run with claude-code agent (Experiment 1)
 uv run metacoder eval project/literature_mcp_eval_config_claude.yaml \
-  -o results/mcp_literature_eval_results_claude_$(date +%Y%m%d).yaml
+  -o results/raw/claude_full_$(date +%Y%m%d).yaml
 ```
+
+**Directory Structure:**
+- `results/raw/` - Raw YAML output from metacoder evaluations
+- `results/` - Processed results and legacy files
+- `results/figures/` - Generated plots from analysis notebooks
 
 ### Environment Variables
 

@@ -10,6 +10,9 @@ eval_workdir/
 # DeepEval cache
 .deepeval/
 
+# Raw evaluation results (large YAML files)
+results/raw/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
