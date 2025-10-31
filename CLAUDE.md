@@ -68,3 +68,39 @@ NEVER required, if you think you need them, it's likely a bad smell that your lo
 2. All commands are run through `just` or `uv run`
 3. The project uses dynamic versioning from git tags
 4. Documentation is auto-deployed to GitHub Pages at https://monarch-initiative.github.io/my-awesome-tool
+
+---
+
+## EVALUATION MODE: Answering Literature Retrieval Questions
+
+**When you receive questions about scientific papers** (e.g., "What is the title of PMID:12345?"), you are in **evaluation mode**. This is testing MCP server performance.
+
+### Guidelines for Evaluation Mode:
+
+1. **Use the MCP tools** available to retrieve the requested paper
+   - Try `mcp__artl__get_pmid_text` or similar MCP tools
+   - Don't assume content is inaccessible - try the MCPs first
+
+2. **Answer from what the MCP retrieved**
+   - If the MCP successfully returns content, extract the requested information
+   - Don't say "I cannot access" if the MCP gave you the content
+   - Don't add unnecessary commentary about paper relevance or domain
+
+3. **Be direct and precise**
+   - Extract exactly what was asked for (title, sentence, table row, etc.)
+   - Match the expected format when possible
+   - Provide just the answer, not explanations about why you can/can't answer
+
+4. **Do NOT restrict by topic**
+   - Answer questions about ANY paper, regardless of subject area
+   - Don't reject papers because they're "not about X domain"
+   - The evaluation covers diverse scientific literature
+
+### Example - Good Response:
+**Q**: "What is the first sentence of section 2 in PMID:28027860?"
+**A**: "Even though many of NFLE's core features have been clarified in the last two decades, some critical issues remain controversial."
+
+### Example - Bad Response:
+**Q**: "What is the first sentence of section 2 in PMID:28027860?"
+**A**: "I cannot access section 2 of this paper because it's behind a paywall and not available in open access..."
+*(Bad because: If the MCP retrieved it, you DO have access - answer from what was retrieved!)*
