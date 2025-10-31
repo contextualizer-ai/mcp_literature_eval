@@ -53,7 +53,7 @@ jobs:
 
       - name: Install goose
         run: |
-          uv tool install goose-cli
+          curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
 
       - name: Run test suite
         run: just test
