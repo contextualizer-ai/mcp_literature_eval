@@ -51,5 +51,9 @@ jobs:
       - name: Install project
         run: uv sync --dev
 
+      - name: Install goose
+        run: |
+          uv tool install goose-cli
+
       - name: Run test suite
         run: just test
