@@ -4,6 +4,11 @@ tests/*/*/output
 
 # temp files
 tmp/
+workdir/
+eval_workdir/
+
+# DeepEval cache
+.deepeval/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
