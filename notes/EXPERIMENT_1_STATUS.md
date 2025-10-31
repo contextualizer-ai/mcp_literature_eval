@@ -21,47 +21,28 @@
    - `results/figures/` - For generated plots
    - `.gitignore` updated to exclude `results/raw/`
 
-## Known Issue: Evaluation Metric API Key
+## ✅ RESOLVED: Evaluation Metric API Key
 
-### Problem
-MetaCoder/DeepEval defaults to using OpenAI for the CorrectnessMetric evaluation, requiring `OPENAI_API_KEY`. However:
-- We want to use Claude (Anthropic) for evaluation
-- `ANTHROPIC_BASE_URL` is set but `ANTHROPIC_API_KEY` may not be
-- The evaluation step fails even though the agent successfully retrieves content
+### Solution Implemented
+Using OpenAI API key stored in `~/openai.key` for DeepEval evaluations.
 
-### Evidence
-Test run on 2025-10-31 showed:
-```
-✅ Claude-code successfully ran (30 seconds)
-✅ Retrieved PMID:28027860 using artl MCP
-✅ Output saved to eval_workdir/
-❌ Evaluation failed: DeepEval trying to use OpenAI
-```
-
-Error:
-```
-openai.OpenAIError: The api_key client option must be set either by passing
-api_key to the client or by setting the OPENAI_API_KEY environment variable
-```
-
-### Solutions
-
-**Option 1: Set OpenAI API Key (temporary workaround)**
+**To run evaluations, first set the API key:**
 ```bash
-export OPENAI_API_KEY="your_key_here"
+export OPENAI_API_KEY=$(cat ~/openai.key)
 ```
-- Pro: Quick fix, evaluations will run
-- Con: Using OpenAI for evaluation instead of Claude
 
-**Option 2: Fix metacoder to use Anthropic for evaluation**
-- Modify metacoder's `get_default_metrics()` in `evals/runner.py`
-- Configure DeepEval to use Anthropic model
-- Requires metacoder code changes
+This is documented in:
+- `README.md` - Main project README
+- `project/README.md` - Configuration directory README
 
-**Option 3: Manual evaluation**
-- Run agents without evaluation
-- Extract outputs from `eval_workdir/`
-- Use custom script to evaluate with Claude
+### Background (for reference)
+MetaCoder/DeepEval defaults to using OpenAI for the CorrectnessMetric evaluation. Initial test run showed:
+- ✅ Claude-code successfully ran (30 seconds)
+- ✅ Retrieved PMID:28027860 using artl MCP
+- ✅ Output saved to eval_workdir/
+- ❌ Evaluation failed: Missing `OPENAI_API_KEY`
+
+**Note:** Future improvement would be to configure DeepEval to use Anthropic models for evaluation, but using OpenAI for evaluation is acceptable since we're testing MCP retrieval performance, not evaluation model choice.
 
 ## Test Results
 

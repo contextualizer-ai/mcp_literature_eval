@@ -12,6 +12,17 @@ This directory contains YAML configuration files for metacoder evaluations.
 
 ## Quick Start
 
+**First, set required API keys:**
+```bash
+# For evaluation metrics (DeepEval uses OpenAI)
+export OPENAI_API_KEY=$(cat ~/openai.key)
+
+# For MCP servers (if needed)
+export PUBMED_EMAIL="your.email@example.com"
+export PUBMED_API_KEY="your_key_here"
+```
+
+**Then run evaluations:**
 ```bash
 # Test configuration (quick)
 uv run metacoder eval project/literature_mcp_eval_config_test.yaml \

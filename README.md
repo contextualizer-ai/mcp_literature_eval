@@ -64,6 +64,9 @@ uv run metacoder eval project/literature_mcp_eval_config_claude.yaml \
 
 ### Environment Variables
 
+#### Required API Keys
+
+**For MCP servers:**
 Some MCPs require API keys or contact information:
 
 ```bash
@@ -71,7 +74,18 @@ export PUBMED_EMAIL="your.email@example.com"
 export PUBMED_API_KEY="your_api_key_here"
 ```
 
-Or configure directly in YAML files under `servers.<server>.env`.
+**For evaluation metrics:**
+DeepEval uses OpenAI for the CorrectnessMetric evaluator. Set the API key:
+
+```bash
+# Load from file (recommended)
+export OPENAI_API_KEY=$(cat ~/openai.key)
+
+# Or set directly
+export OPENAI_API_KEY="sk-proj-..."
+```
+
+Or configure MCP-specific settings directly in YAML files under `servers.<server>.env`.
 
 ## Test Suite
 
