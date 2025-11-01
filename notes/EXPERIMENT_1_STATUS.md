@@ -164,6 +164,22 @@ logger.warning(f"Claude returned error (test will be marked as failed): {ao.resu
 **Files Modified**:
 - `CLAUDE.md` (added lines 72-106: Evaluation Mode section)
 
+### ✅ Fix #3: Goose Hints File Added for Fair Comparison
+
+**Problem**: Goose agent had no instruction file, while claude-code had CLAUDE.md, making cross-agent comparison unfair
+
+**Solution**: Created symlink `project/.goosehints -> CLAUDE.md` so both agents use identical instructions
+
+**Impact**: Ensures fair comparison between agents with equivalent guidance
+
+**Files Modified**:
+- `project/.goosehints` (symlink to CLAUDE.md)
+
+**Rationale**:
+- Goose reads `.goosehints` as its primary instruction file (equivalent to CLAUDE.md for claude-code)
+- Symlink ensures both agents receive identical evaluation mode instructions
+- Enables controlled comparison - differences in results will be due to agent capabilities, not configuration differences
+
 ## Next Steps
 
 ### ✅ Ready to Run!
