@@ -10,8 +10,11 @@ eval_workdir/
 # DeepEval cache
 .deepeval/
 
-# Raw evaluation results (large YAML files)
-results/raw/
+# Compare agents evaluation results (large YAML files)
+results/compare_agents/
+
+# Attic for old evaluation results
+results/attic/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
