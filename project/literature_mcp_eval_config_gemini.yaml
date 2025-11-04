@@ -1,14 +1,15 @@
-name: pubmed tools evals
+name: pubmed tools evals - gemini agent
 description: |
-  Evaluations for multiple pubmed MCPs
+  Evaluations for multiple pubmed MCPs using gemini agent
+  Part of Experiment 1: Cross-Agent Comparison
 
 coders:
-  goose: {}
+  gemini: {}
 
 models:
-  claude-4-sonnet:
-    provider: anthropic
-    name: claude-sonnet-4-20250514
+  gemini-2-flash:
+    provider: google
+    name: gemini-2.0-flash-exp
 
 servers:
   artl:

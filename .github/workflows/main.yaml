@@ -51,5 +51,9 @@ jobs:
       - name: Install project
         run: uv sync --dev
 
+      - name: Install goose
+        run: |
+          curl -fsSL https://github.com/block/goose/releases/download/stable/download_cli.sh | CONFIGURE=false bash
+
       - name: Run test suite
         run: just test

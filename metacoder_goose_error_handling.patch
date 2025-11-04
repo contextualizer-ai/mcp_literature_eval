@@ -1,0 +1,32 @@
+--- a/metacoder/coders/goose.py
++++ b/metacoder/coders/goose.py
+@@ -193,11 +193,23 @@ class GooseCoder(BaseCoder):
+         text = self.expand_prompt(input_text)
+         command = [str(goose_path), "run", "-t", text]
+         logger.info(f"🦆 Running command: {' '.join(command)}")
+         # time the command
+         start_time = time.time()
+-        result = self.run_process(command, env)
+-        end_time = time.time()
+-        ao = CoderOutput(stdout=result.stdout, stderr=result.stderr)
+-        logger.info(f"🦆 Command took {end_time - start_time:.2f} seconds")
++        try:
++            result = self.run_process(command, env)
++            end_time = time.time()
++            ao = CoderOutput(stdout=result.stdout, stderr=result.stderr)
++            logger.info(f"🦆 Command took {end_time - start_time:.2f} seconds")
++        except Exception as e:
++            # Handle process errors gracefully - don't crash entire evaluation
++            end_time = time.time()
++            logger.warning(f"Goose command failed (test will be marked as failed): {e}")
++            ao = CoderOutput(
++                stdout="",
++                stderr=str(e),
++                result_text=f"Error: {str(e)}",
++                success=False,
++            )
++            logger.info(f"🦆 Command took {end_time - start_time:.2f} seconds")
++            return ao
+         # look in output text for a file like: logging to ./.local/share/goose/sessions/20250613_120403.jsonl
+         session_file: Optional[Path] = None
+         for line in result.stdout.split("\n"):

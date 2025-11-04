@@ -11,7 +11,12 @@
 #
 # tests/test_goose.py
 from __future__ import annotations
-import logging, os, platform, re, shutil, subprocess
+import logging
+import os
+import platform
+import re
+import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -30,7 +35,12 @@ LOC_LINE_RE = re.compile(r"^\s*Config file:\s*(?P<path>.+?)\s*$", re.M)
     [
         ["goose", "--version"],
         # ["goose", "info", "-v"],
-        ["goose", "run", "-t", "What is the first sentence of section 2 in PMID:28027860?"],
+        [
+            "goose",
+            "run",
+            "-t",
+            "What is the first sentence of section 2 in PMID:28027860?",
+        ],
     ],
 )
 def test_goose_reads_config_from_temp_dir(

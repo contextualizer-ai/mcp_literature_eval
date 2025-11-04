@@ -1,9 +1,10 @@
-name: pubmed tools evals
+name: pubmed tools evals - claude-code agent
 description: |
-  Evaluations for multiple pubmed MCPs
+  Evaluations for multiple pubmed MCPs using claude-code agent
+  Part of Experiment 1: Cross-Agent Comparison
 
 coders:
-  goose: {}
+  claude: {}
 
 models:
   claude-4-sonnet:
@@ -20,7 +21,7 @@ servers:
     command: uvx
     args: [mcp-simple-pubmed]
     env:
-      PUBMED_EMAIL: justinreese@lbl.gov
+      PUBMED_EMAIL: ctparker@lbl.gov
   biomcp:
     name: biomcp
     command: uv
@@ -31,7 +32,6 @@ servers:
     args: ["run", "--with", "git+https://github.com/chrismannina/pubmed-mcp@main", "-m", "src.main"]
     env:
       PUBMED_API_KEY: "01eec0a16472164c6d69163bd28368311808"
-      PUBMED_EMAIL: justinreese@lbl.gov
 
 server_combinations:
   - [artl]
