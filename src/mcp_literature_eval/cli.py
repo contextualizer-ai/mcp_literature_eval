@@ -14,6 +14,7 @@ def run(
 ):
     typer.echo(f"Hello, {name}!")
 
+
 def main():
     """Main entry point for the CLI."""
     app()
