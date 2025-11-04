@@ -22,6 +22,9 @@ dependencies = [
   "linkml-runtime >=1.9.4",
   "metacoder",
   "pypdf>=6.0.0",
+  "seaborn>=0.13.2",
+  "matplotlib>=3.10.6",
+  "scipy>=1.15.3",
 ]
 
 [dependency-groups]

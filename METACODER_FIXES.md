@@ -140,9 +140,56 @@ uv run metacoder eval project/literature_mcp_eval_config.yaml -o results/raw/goo
 
 Result: All 100 tests completed successfully.
 
+### Error 4: MCP extensions not loading (CRITICAL)
+
+**Problem**: All 100 Goose tests showed "No extensions available to enable" even though extensions were configured in `.config/goose/config.yaml`.
+
+**Root cause discovered**: `goose run` command DOES NOT load extensions from config files. Extensions must be passed as command-line arguments using `--with-extension`.
+
+**Fix**: Modified `goose.py` lines 221-232 to add `--with-extension` flags for each configured MCP extension:
+
+```python
+# Add MCP extensions as command-line arguments
+# Config files alone don't work with 'goose run' - must use --with-extension
+if self.config and self.config.extensions:
+    for mcp in self.config.extensions:
+        if isinstance(mcp, MCPConfig) and mcp.enabled:
+            # Build extension command from cmd + args
+            if mcp.command:
+                ext_cmd = mcp.command
+                if mcp.args:
+                    ext_cmd = ext_cmd + " " + " ".join(mcp.args)
+                command.extend(["--with-extension", ext_cmd])
+                logger.debug(f"Adding extension: --with-extension {ext_cmd}")
+```
+
+**Example**: For an extension configured as:
+```yaml
+extensions:
+  artl:
+    cmd: uvx
+    args:
+    - artl-mcp
+```
+
+The command now becomes:
+```bash
+goose run -t "text" --with-extension "uvx artl-mcp"
+```
+
+**Verification**:
+- Before fix: "I don't currently have access to any extensions"
+- After fix: Goose successfully calls MCP tools like `get_paper`, `get_metadata`, etc.
+
+**Reference**: https://block.github.io/goose/docs/guides/goose-cli-commands/ documents the `--with-extension` flag.
+
 ## Upstream Contribution
 
-The changes to `goose.py` should be contributed back to the metacoder project as they fix a critical bug that prevents Goose evaluations from working with Anthropic models.
+The changes to `goose.py` should be contributed back to the metacoder project as they fix critical bugs that prevent Goose evaluations from working:
+
+1. Missing `GOOSE_PROVIDER__API_KEY` environment variable configuration
+2. MCP extensions not being passed to `goose run` command via `--with-extension` flags
+3. Crash-on-error bug that prevented graceful failure handling
 
 ### Patch File
 
@@ -151,5 +198,7 @@ A patch file has been created: `metacoder_goose_error_handling.patch`
 ### Recommended Next Steps
 
 1. Submit a PR to the metacoder repository with these fixes
-2. Include both the environment variable configuration and error handling changes
-3. Add documentation about Goose's environment variable requirements
+2. Include all three fixes: environment variables, extension command-line args, and error handling
+3. Add documentation about:
+   - Goose's environment variable requirements (`GOOSE_PROVIDER__API_KEY`)
+   - How `goose run` requires `--with-extension` flags (config files are not sufficient)

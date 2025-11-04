@@ -1,0 +1,24 @@
+--- a/.venv/lib/python3.10/site-packages/metacoder/coders/goose.py
++++ b/.venv/lib/python3.10/site-packages/metacoder/coders/goose.py
+@@ -216,7 +216,21 @@ class GooseCoder(BaseCoder):
+                     logger.debug("Set GOOSE_PROVIDER__API_KEY from OPENAI_API_KEY")
+ 
+             text = self.expand_prompt(input_text)
+             command = [str(goose_path), "run", "-t", text]
++
++            # Add MCP extensions as command-line arguments
++            # Config files alone don't work with 'goose run' - must use --with-extension
++            if self.config and self.config.extensions:
++                for mcp in self.config.extensions:
++                    if isinstance(mcp, MCPConfig) and mcp.enabled:
++                        # Build extension command from cmd + args
++                        if mcp.command:
++                            ext_cmd = mcp.command
++                            if mcp.args:
++                                ext_cmd = ext_cmd + " " + " ".join(mcp.args)
++                            command.extend(["--with-extension", ext_cmd])
++                            logger.debug(f"Adding extension: --with-extension {ext_cmd}")
++
+             logger.info(f"🦆 Running command: {' '.join(command)}")
+             # time the command
+             start_time = time.time()
