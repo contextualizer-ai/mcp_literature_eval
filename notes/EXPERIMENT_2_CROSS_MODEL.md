@@ -15,9 +15,9 @@ Different underlying models will produce different MCP retrieval performance eve
 
 **Independent Variable:**
 - Underlying LLM model used by Goose agent:
-  - gpt-4o (OpenAI, used in Experiment 1)
+  - gpt-4o (OpenAI, flagship model)
   - gpt-5 (OpenAI, latest flagship model)
-  - claude-sonnet-4-20250514 (Anthropic)
+  - gpt-4o-mini (OpenAI, smaller/cheaper model)
 
 **Dependent Variables:**
 - Semantic similarity scores (0-1 scale)
@@ -37,6 +37,7 @@ Different underlying models will produce different MCP retrieval performance eve
 
 ```
 3 models × 4 MCPs × 25 test cases = 300 evaluations
+(Note: claude-sonnet-4 dropped due to CBORG configuration issues with Goose)
 ```
 
 ## Execution Plan
@@ -53,13 +54,13 @@ Different underlying models will produce different MCP retrieval performance eve
    - Config: `literature_mcp_eval_config_goose_gpt5.yaml`
    - Run script: `run_goose_gpt5_eval.sh`
    - Results: `results/compare_models/goose_gpt5_$(date).yaml`
-   - Status: 🔄 Running
+   - Status: ✅ Complete
 
-3. **Goose + claude-sonnet-4** (new)
-   - Config: `literature_mcp_eval_config_goose_claude.yaml`
-   - Run script: `run_goose_claude_eval.sh`
-   - Results: `results/compare_models/goose_claude_$(date).yaml`
-   - Status: 🔄 Running
+3. **Goose + gpt-4o-mini** (new)
+   - Config: `literature_mcp_eval_config_goose_gpt4o_mini.yaml`
+   - Run script: `run_goose_gpt4o_mini_eval.sh`
+   - Results: `results/compare_models/goose_gpt4o_mini_$(date).yaml`
+   - Status: ⏳ Pending
 
 ### Model Configuration Details
 

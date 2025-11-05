@@ -1,0 +1,58 @@
+name: CBORG test - goose agent with claude-sonnet
+description: |
+  Quick test of CBORG configuration (4 tests only)
+  Testing Goose + Claude via api.cborg.lbl.gov
+
+coders:
+  goose:
+    env:
+      GOOSE_MODEL: anthropic/claude-sonnet
+      GOOSE_PROVIDER: anthropic
+      ANTHROPIC_BASE_URL: https://api.cborg.lbl.gov
+
+models:
+  claude-sonnet-4:
+    provider: anthropic
+    name: anthropic/claude-sonnet
+
+servers:
+  artl:
+    name: artl
+    command: uvx
+    args: [artl-mcp]
+
+server_combinations:
+  - [artl]
+
+cases:
+- name: PMID_28027860_Title
+  group: "Metadata"
+  metrics:
+  - CorrectnessMetric
+  input: "What is the title of PMID:28027860?"
+  expected_output: "From nocturnal frontal lobe epilepsy to Sleep-Related Hypermotor Epilepsy: A 35-year diagnostic challenge"
+  threshold: 0.9
+
+- name: PMID_28027860_Full_Text
+  group: "Text extraction"
+  metrics:
+  - CorrectnessMetric
+  input: "What is the first sentence of section 2 in PMID:28027860?"
+  expected_output: "Even though many of NFLE's core features have been clarified in the last two decades, some critical issues remain controversial."
+  threshold: 0.9
+
+- name: PMC2824148_Metadata
+  group: "Metadata"
+  metrics:
+  - CorrectnessMetric
+  input: "What is the DOI for the final published version of PMC2824148?"
+  expected_output: "10.1142/S0219720006001977"
+  threshold: 0.9
+
+- name: PMC5152751_Metadata
+  group: "Metadata"
+  metrics:
+  - CorrectnessMetric
+  input: "Which publisher published PMC5152751?"
+  expected_output: "Nature"
+  threshold: 0.9
