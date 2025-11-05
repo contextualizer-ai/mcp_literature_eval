@@ -6,13 +6,14 @@ description: |
 coders:
   goose:
     env:
-      GOOSE_MODEL: claude-sonnet-4-20250514
+      GOOSE_MODEL: anthropic/claude-sonnet
       GOOSE_PROVIDER: anthropic
+      ANTHROPIC_BASE_URL: https://api.cborg.lbl.gov
 
 models:
   claude-sonnet-4:
     provider: anthropic
-    name: claude-sonnet-4-20250514
+    name: anthropic/claude-sonnet
 
 servers:
   artl:
