@@ -193,12 +193,12 @@ mcp_literature_eval/
 │   ├── experiment_2_cross_model_analysis.ipynb # Analyze Experiment 2
 │   └── attic/                                  # Archived notebooks
 ├── project/                                     # Test configurations (YAML)
-│   ├── literature_mcp_eval_config.yaml         # Goose + gpt-4o (baseline)
-│   ├── literature_mcp_eval_config_claude.yaml  # Claude Code agent
-│   ├── literature_mcp_eval_config_gemini.yaml  # Gemini CLI agent
+│   ├── literature_mcp_eval_config_goose_gpt4o.yaml       # Goose + gpt-4o (baseline)
 │   ├── literature_mcp_eval_config_goose_gpt5.yaml        # Goose + gpt-5
 │   ├── literature_mcp_eval_config_goose_gpt4o_mini.yaml  # Goose + gpt-4o-mini
-│   └── literature_mcp_eval_config_test.yaml    # Quick test subset
+│   ├── literature_mcp_eval_config_goose_claude.yaml      # Goose + claude-sonnet-4
+│   ├── literature_mcp_eval_config_claude.yaml  # Claude Code agent
+│   └── literature_mcp_eval_config_gemini.yaml  # Gemini CLI agent
 ├── results/
 │   ├── compare_agents/                         # Experiment 1 results
 │   ├── compare_models/                         # Experiment 2 results

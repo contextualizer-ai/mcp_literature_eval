@@ -1,14 +1,18 @@
-name: pubmed tools evals
+name: pubmed tools evals - goose agent with gpt-4o
 description: |
-  Evaluations for multiple pubmed MCPs
+  Evaluations for multiple pubmed MCPs using goose agent with gpt-4o model
+  Part of Experiment 2: Cross-Model Comparison (same agent, different models)
 
 coders:
-  goose: {}
+  goose:
+    env:
+      GOOSE_MODEL: gpt-4o
+      GOOSE_PROVIDER: openai
 
 models:
-  claude-4-sonnet:
-    provider: anthropic
-    name: claude-sonnet-4-20250514
+  gpt-4o:
+    provider: openai
+    name: gpt-4o
 
 servers:
   artl:
