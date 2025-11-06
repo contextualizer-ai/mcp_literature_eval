@@ -149,6 +149,8 @@ The 25 test cases cover **6 case groups**:
 - Each test is scored using semantic similarity (CorrectnessMetric via DeepEval)
 - Pass/fail determined by threshold (typically 0.9 for 90% semantic match)
 
+**📋 Full test case details:** See [TEST_CASES.md](TEST_CASES.md) for the complete list of all 25 test questions and expected answers, organized by category.
+
 ## Analysis and Visualization
 
 All analysis is performed in Jupyter notebooks located in `notebook/`:
@@ -186,6 +188,8 @@ Generates:
 
 ```
 mcp_literature_eval/
+├── README.md                                    # Project overview and quick start
+├── TEST_CASES.md                                # Detailed documentation of all 25 test cases
 ├── notebook/                                    # Jupyter notebooks (primary interface)
 │   ├── experiment_1_run_evaluations.ipynb     # Run Experiment 1
 │   ├── experiment_1_cross_agent_analysis.ipynb # Analyze Experiment 1
@@ -249,7 +253,7 @@ Compares three OpenAI models using Goose agent:
 ### Getting Help
 
 - **Start here:** Open the Jupyter notebooks in `notebook/` - they contain step-by-step instructions
-- **Test questions:** See `project/literature_mcp_eval_config*.yaml` for all test cases
+- **Test cases:** See [TEST_CASES.md](TEST_CASES.md) for detailed documentation of all 25 test questions
 - **Experiment details:** Check `notes/EXPERIMENT_1_RESULTS.md` and `notes/EXPERIMENT_2_CROSS_MODEL.md`
 - **Metacoder framework:** [metacoder documentation](https://github.com/ai4curation/metacoder)
 - **Evaluation metrics:** [DeepEval documentation](https://docs.deepeval.com/)
