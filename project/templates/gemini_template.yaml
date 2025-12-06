@@ -1,0 +1,56 @@
+# Template for pubmed tools evals - gemini agent
+# Metadata only - test cases are merged from test_cases.yaml
+
+name: pubmed tools evals - gemini agent
+description: 'Evaluations for multiple pubmed MCPs using gemini agent
+
+  Part of Experiment 1: Cross-Agent Comparison
+
+  '
+coders:
+  gemini: {}
+models:
+  gemini-2.5-flash:
+    provider: google
+    name: gemini-2.5-flash
+    # NOTE: Model is configured in ~/.gemini/settings.json
+    # Metacoder gemini coder doesn't pass -m flag, but reads from settings.json
+servers:
+  artl:
+    name: artl
+    command: uvx
+    args:
+    - artl-mcp
+  simple-pubmed:
+    name: pubmed
+    command: uvx
+    args:
+    - mcp-simple-pubmed
+    env:
+      PUBMED_EMAIL: justinreese@lbl.gov
+  biomcp:
+    name: biomcp
+    command: uv
+    args:
+    - run
+    - --with
+    - biomcp-python
+    - biomcp
+    - run
+  pubmed-mcp:
+    name: pubmed-mcp
+    command: uv
+    args:
+    - run
+    - --with
+    - git+https://github.com/chrismannina/pubmed-mcp@main
+    - -m
+    - src.main
+    env:
+      PUBMED_API_KEY: 01eec0a16472164c6d69163bd28368311808
+      PUBMED_EMAIL: justinreese@lbl.gov
+server_combinations:
+- - artl
+- - simple-pubmed
+- - biomcp
+- - pubmed-mcp

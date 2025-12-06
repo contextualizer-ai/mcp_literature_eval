@@ -1,0 +1,59 @@
+# Template for pubmed tools evals - goose agent with claude-sonnet-4
+# Metadata only - test cases are merged from test_cases.yaml
+
+name: pubmed tools evals - goose agent with claude-sonnet-4
+description: 'Evaluations for multiple pubmed MCPs using goose agent with claude-sonnet-4
+  model
+
+  Part of Experiment 2: Cross-Model Comparison (same agent, different models)
+
+  '
+coders:
+  goose:
+    env:
+      GOOSE_MODEL: anthropic/claude-sonnet
+      GOOSE_PROVIDER: anthropic
+      ANTHROPIC_BASE_URL: https://api.cborg.lbl.gov
+models:
+  claude-sonnet-4:
+    provider: anthropic
+    name: anthropic/claude-sonnet
+servers:
+  artl:
+    name: artl
+    command: uvx
+    args:
+    - artl-mcp
+  simple-pubmed:
+    name: pubmed
+    command: uvx
+    args:
+    - mcp-simple-pubmed
+    env:
+      PUBMED_EMAIL: justinreese@lbl.gov
+  biomcp:
+    name: biomcp
+    command: uv
+    args:
+    - run
+    - --with
+    - biomcp-python
+    - biomcp
+    - run
+  pubmed-mcp:
+    name: pubmed-mcp
+    command: uv
+    args:
+    - run
+    - --with
+    - git+https://github.com/chrismannina/pubmed-mcp@main
+    - -m
+    - src.main
+    env:
+      PUBMED_API_KEY: 01eec0a16472164c6d69163bd28368311808
+      PUBMED_EMAIL: justinreese@lbl.gov
+server_combinations:
+- - artl
+- - simple-pubmed
+- - biomcp
+- - pubmed-mcp
