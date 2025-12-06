@@ -10,9 +10,6 @@ eval_workdir/
 # DeepEval cache
 .deepeval/
 
-# Compare agents evaluation results (large YAML files)
-results/compare_agents/
-
 # Attic for old evaluation results
 results/attic/
 
