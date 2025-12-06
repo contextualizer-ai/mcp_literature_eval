@@ -68,6 +68,7 @@ def generate_all_configs(
     # Template name mapping to output filenames
     template_to_output = {
         'claude_template.yaml': 'literature_mcp_eval_config_claude.yaml',
+        'codex_template.yaml': 'literature_mcp_eval_config_codex.yaml',
         'gemini_template.yaml': 'literature_mcp_eval_config_gemini.yaml',
         'goose_claude_template.yaml': 'literature_mcp_eval_config_goose_claude.yaml',
         'goose_gpt4o_template.yaml': 'literature_mcp_eval_config_goose_gpt4o.yaml',
