@@ -6,18 +6,18 @@
 # 2. Edit project/templates/<template>.yaml (for agent/model config changes)
 # 3. Run: python project/scripts/generate_configs.py
 
-name: pubmed tools evals - codex agent
-description: 'Evaluations for multiple pubmed MCPs using codex agent
+name: pubmed tools evals - gemini agent
+description: 'Evaluations for multiple pubmed MCPs using gemini agent
 
   Part of Experiment 1: Cross-Agent Comparison
 
   '
 coders:
-  codex: {}
+  gemini: {}
 models:
-  gpt-4o:
-    provider: openai
-    name: gpt-4o
+  gemini-2.5-flash:
+    provider: google
+    name: gemini-2.5-flash
 servers:
   artl:
     name: artl

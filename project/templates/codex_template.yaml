@@ -10,9 +10,9 @@ description: 'Evaluations for multiple pubmed MCPs using codex agent
 coders:
   codex: {}
 models:
-  gpt-4o:
+  gpt-5.1-codex-max:
     provider: openai
-    name: gpt-4o
+    name: gpt-5.1-codex-max
 servers:
   artl:
     name: artl
