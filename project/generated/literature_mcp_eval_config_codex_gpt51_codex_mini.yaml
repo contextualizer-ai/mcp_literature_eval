@@ -6,18 +6,19 @@
 # 2. Edit project/templates/<template>.yaml (for agent/model config changes)
 # 3. Run: python project/scripts/generate_configs.py
 
-name: pubmed tools evals - codex agent (gpt-5-nano)
-description: 'Evaluations for multiple pubmed MCPs using codex agent with gpt-5-nano
+name: pubmed tools evals - codex agent (gpt-5-mini)
+description: 'Evaluations for multiple pubmed MCPs using codex agent with gpt-5-mini
 
   Part of Experiment 2: Cross-Model Comparison
 
   '
 coders:
-  codex: {}
+  codex:
+    sandbox_permissions: []  # Disable filesystem access to prevent answer file cheating
 models:
-  gpt-5-nano:
+  gpt-5.1-codex-mini:
     provider: openai
-    name: gpt-5-nano
+    name: gpt-5.1-codex-mini
 servers:
   artl:
     name: artl

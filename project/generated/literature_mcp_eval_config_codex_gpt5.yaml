@@ -13,7 +13,8 @@ description: 'Evaluations for multiple pubmed MCPs using codex agent with gpt-5
 
   '
 coders:
-  codex: {}
+  codex:
+    sandbox_permissions: []  # Disable filesystem access to prevent answer file cheating
 models:
   gpt-5.1-codex-max:
     provider: openai
