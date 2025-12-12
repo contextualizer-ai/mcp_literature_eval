@@ -1,0 +1,76 @@
+# Experiment 2: Cross-Model Comparison
+# Version Manifest
+# Generated: 2025-12-10
+
+experiment:
+  name: "Experiment 2: Cross-Model Comparison"
+  date: "2025-12-09 to 2025-12-10"
+  description: "Compare Codex agent performance across different model sizes"
+
+agent:
+  name: codex-cli
+  version: "0.63.0"
+
+models:
+  - name: gpt-5.1-codex-max
+    provider: openai
+    role: baseline
+  - name: gpt-5.1-codex-mini
+    provider: openai
+    role: smaller model
+  - name: gpt-5.1-codex
+    provider: openai
+    role: standard model
+
+mcp_servers:
+  artl:
+    package: artl-mcp
+    version: "0.2.0"
+  simple-pubmed:
+    package: mcp-simple-pubmed
+    version: "0.1.13"
+  biomcp:
+    package: biomcp-python
+    version: "0.7.1"
+  pubmed-mcp:
+    package: pubmed-mcp
+    source: "git+https://github.com/chrismannina/pubmed-mcp@main"
+    version: "main branch (pinned at evaluation time)"
+
+environment:
+  python: "3.13.5"
+  uv: "0.7.1"
+  uvx: "0.7.1"
+  platform: "darwin (macOS)"
+
+evaluation:
+  framework: metacoder
+  scorer: deepeval (gpt-4.1)
+  threshold: 0.9
+  test_cases: 25
+  mcp_servers: 4
+  total_evaluations_per_model: 100
+
+results:
+  gpt-5.1-codex-max:
+    passed: 64
+    failed: 36
+    pass_rate: "64%"
+    result_file: "results/compare_agents/codex_20251208.yaml"
+    note: "baseline from Experiment 1"
+  gpt-5.1-codex-mini:
+    passed: 54
+    failed: 46
+    pass_rate: "54%"
+    result_file: "results/compare_models/codex_gpt51_codex_mini_20251209.yaml"
+  gpt-5.1-codex:
+    passed: 58
+    failed: 42
+    pass_rate: "58%"
+    result_file: "results/compare_models/codex_gpt51_codex_20251210.yaml"
+
+summary:
+  finding: "Model size affects MCP retrieval performance"
+  max_vs_mini_difference: "10 percentage points"
+  max_vs_standard_difference: "6 percentage points"
+  conclusion: "Larger models perform better on MCP literature retrieval tasks"

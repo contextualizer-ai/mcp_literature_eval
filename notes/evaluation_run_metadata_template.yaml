@@ -1,0 +1,91 @@
+# Evaluation Run Metadata Template
+# Fill this out BEFORE running evaluations to capture exact versions
+
+run_date: YYYY-MM-DD
+run_description: |
+  Description of this evaluation run (e.g., "First run with custom GEval metrics")
+
+# Agent Versions
+agents:
+  claude-code:
+    version: ""  # Run: claude --version
+    notes: ""
+  goose:
+    version: ""  # Run: goose --version or uv pip show goose-ai
+    notes: ""
+
+# MCP Server Versions
+mcp_servers:
+  artl:
+    version: ""  # Run: uvx artl-mcp --version or check pip
+    source: "uvx artl-mcp"
+    notes: ""
+
+  simple-pubmed:
+    version: ""  # Run: uvx mcp-simple-pubmed --version or check pip
+    source: "uvx mcp-simple-pubmed"
+    notes: ""
+
+  biomcp:
+    version: ""  # Run: uv pip show biomcp-python
+    source: "uv run --with biomcp-python biomcp run"
+    notes: ""
+
+  pubmed-mcp:
+    git_repo: "https://github.com/chrismannina/pubmed-mcp"
+    git_commit: ""  # Get commit hash from the repo at time of run
+    git_branch: "main"
+    source: "uv run --with git+https://github.com/chrismannina/pubmed-mcp@main -m src.main"
+    notes: ""
+
+# LLM Model Versions (from config files)
+llm_models:
+  claude-sonnet-4:
+    model_id: "claude-sonnet-4-20250514"
+    provider: "anthropic"
+    config_file: "literature_mcp_eval_config_claude.yaml"
+
+  gpt-4o:
+    model_id: ""  # Check in goose_gpt4o config
+    provider: "openai"
+    config_file: "literature_mcp_eval_config_goose_gpt4o.yaml"
+
+  gpt-4o-mini:
+    model_id: ""  # Check in goose_gpt4o_mini config
+    provider: "openai"
+    config_file: "literature_mcp_eval_config_goose_gpt4o_mini.yaml"
+
+  gpt-5:
+    model_id: ""  # Check in goose_gpt5 config
+    provider: "openai"
+    config_file: "literature_mcp_eval_config_goose_gpt5.yaml"
+
+  gemini:
+    model_id: ""  # Check in gemini config
+    provider: "google"
+    config_file: "literature_mcp_eval_config_gemini.yaml"
+
+# Metacoder Version
+metacoder:
+  version: "0.1.0"  # Run: uv pip show metacoder
+  custom_geval_support: true  # PR #37 merged
+  notes: "Using custom GEval metrics with evaluation_steps and rubrics"
+
+# Evaluation Configuration
+evaluation:
+  test_cases_file: "project/test_cases.yaml"
+  test_cases_version: "2025-11-25"  # Date of custom GEval update
+  num_test_cases: 25
+  custom_geval_metrics: true
+  changes_from_previous_run: |
+    - Added custom GEval evaluation_steps to all test cases
+    - Updated PMC4831113_Full_Text expected output (removed retraction preamble)
+    - Added rubric to PMC8086273_Retraction (complex synthesis case)
+    - Special handling for section header lists, DOI formats, publisher names
+
+# Environment
+environment:
+  os: ""  # Run: uname -s
+  os_version: ""  # Run: uname -r
+  python_version: ""  # Run: python --version
+  uv_version: ""  # Run: uv --version

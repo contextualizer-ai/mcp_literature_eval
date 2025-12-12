@@ -1,0 +1,143 @@
+# Evaluation Run Metadata - 2025-11-25
+# Custom GEval metrics implementation run
+
+run_date: 2025-11-25
+run_description: |
+  First evaluation run with custom GEval metrics based on metacoder PR #37.
+  All 25 test cases now have custom evaluation_steps tailored to their type.
+  Key changes:
+  - Added evaluation_steps to all test cases
+  - Fixed PMC4831113_Full_Text expected output (removed retraction preamble)
+  - Added rubric to PMC8086273_Retraction for complex synthesis
+  - Special handling for section headers, DOI formats, publisher names
+
+# Agent Versions
+agents:
+  claude-code:
+    version: "2.0.53"
+    notes: "Running evaluations via metacoder, not directly via CLI"
+  goose:
+    version: "TBD - need to check during eval run"
+    notes: "Used for GPT-4o, GPT-4o-mini, GPT-5, and Claude Sonnet 4 evals"
+
+# MCP Server Versions
+# Note: These are run via uvx/uv, versions captured at run time
+mcp_servers:
+  artl:
+    version: "TBD - run: uvx artl-mcp --version"
+    source: "uvx artl-mcp"
+    notes: "EuropePMC-based literature MCP"
+
+  simple-pubmed:
+    version: "TBD - run: uvx mcp-simple-pubmed --version"
+    source: "uvx mcp-simple-pubmed"
+    notes: "Simple PubMed MCP"
+    env:
+      PUBMED_EMAIL: "ctparker@lbl.gov"
+
+  biomcp:
+    version: "TBD - run: uv pip show biomcp-python"
+    source: "uv run --with biomcp-python biomcp run"
+    notes: "Bio-focused MCP"
+
+  pubmed-mcp:
+    git_repo: "https://github.com/chrismannina/pubmed-mcp"
+    git_commit: "main branch at time of eval run"
+    git_branch: "main"
+    source: "uv run --with git+https://github.com/chrismannina/pubmed-mcp@main -m src.main"
+    notes: "Advanced PubMed MCP"
+    env:
+      PUBMED_API_KEY: "01eec0a16472164c6d69163bd28368311808"
+
+# LLM Model Versions (from config files)
+llm_models:
+  claude-sonnet-4:
+    model_id: "claude-sonnet-4-20250514"
+    provider: "anthropic"
+    config_file: "literature_mcp_eval_config_claude.yaml"
+    notes: "Using claude-code agent"
+
+  claude-sonnet-4-goose:
+    model_id: "claude-sonnet-4"  # Exact model string TBD from goose
+    provider: "anthropic"
+    config_file: "literature_mcp_eval_config_goose_claude.yaml"
+    notes: "Using goose agent"
+
+  gpt-4o:
+    model_id: "gpt-4o"
+    provider: "openai"
+    config_file: "literature_mcp_eval_config_goose_gpt4o.yaml"
+    notes: "Using goose agent"
+
+  gpt-4o-mini:
+    model_id: "gpt-4o-mini"
+    provider: "openai"
+    config_file: "literature_mcp_eval_config_goose_gpt4o_mini.yaml"
+    notes: "Using goose agent"
+
+  gpt-5:
+    model_id: "gpt-5"
+    provider: "openai"
+    config_file: "literature_mcp_eval_config_goose_gpt5.yaml"
+    notes: "Using goose agent - GPT-5 preview"
+
+  gemini:
+    model_id: "gemini-2.0-flash-exp"
+    provider: "google"
+    config_file: "literature_mcp_eval_config_gemini.yaml"
+    notes: "Gemini 2.0 Flash experimental"
+
+# Metacoder Version
+metacoder:
+  version: "0.1.0"
+  git_repo: "https://github.com/ai4curation/metacoder.git"
+  git_branch: "custom-geval-enhancements"
+  git_commit: "3e90e9bac9fa2e2fd3f62637ca82f7ecfe0b4cca"
+  custom_geval_support: true
+  notes: |
+    Using fork with custom GEval enhancements (not yet merged to main).
+    Supports evaluation_steps, criteria, and rubric in MetricConfig.
+
+# Evaluation Configuration
+evaluation:
+  test_cases_file: "project/test_cases.yaml"
+  test_cases_version: "2025-11-25"
+  num_test_cases: 25
+  custom_geval_metrics: true
+  changes_from_previous_run: |
+    Previous run: 2025-11-06 (results in results/compare_agents/*_20251106.yaml)
+
+    Changes in this run:
+    1. Added custom GEval evaluation_steps to all 25 test cases
+    2. Updated PMC4831113_Full_Text expected output:
+       - Removed: "This article has been retracted. However, the Conclusions section stated the following: "
+       - Now just expects the actual Conclusions text
+       - Added evaluation step: "Do not penalize if the output also mentions the article has been retracted"
+    3. Added rubric to PMC8086273_Retraction for partial credit scoring
+    4. Special handling for:
+       - Section header lists (partial credit for missing items)
+       - DOI formats (accept with or without https://doi.org/ prefix)
+       - Publisher names (accept "Nature" or "Nature Publishing Group")
+    5. All text extraction cases now explicitly require verbatim text
+    6. Metadata, table, and supplementary material cases have appropriate flexibility
+
+# Environment
+environment:
+  os: "Darwin"
+  os_version: "25.1.0"
+  python_version: "3.11.9"
+  uv_version: "0.7.1 (90f46f89a 2025-04-30)"
+
+# Execution Notes
+execution:
+  status: "PENDING - Not yet run"
+  start_time: null
+  end_time: null
+  duration: null
+  results_location: "TBD - will be in results/ directory"
+  notes: |
+    Before running:
+    1. Verify all MCP server versions are captured
+    2. Ensure metacoder fork is still at commit 3e90e9bac
+    3. Run evaluations via notebooks in notebook/
+    4. Save results with date suffix for comparison

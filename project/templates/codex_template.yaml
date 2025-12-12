@@ -1,0 +1,54 @@
+# Template for pubmed tools evals - codex agent
+# Metadata only - test cases are merged from test_cases.yaml
+
+name: pubmed tools evals - codex agent
+description: 'Evaluations for multiple pubmed MCPs using codex agent
+
+  Part of Experiment 1: Cross-Agent Comparison
+
+  '
+coders:
+  codex: {}
+models:
+  gpt-5.1-codex-max:
+    provider: openai
+    name: gpt-5.1-codex-max
+servers:
+  artl:
+    name: artl
+    command: uvx
+    args:
+    - artl-mcp
+  simple-pubmed:
+    name: pubmed
+    command: uvx
+    args:
+    - mcp-simple-pubmed
+    env:
+      PUBMED_EMAIL: justinreese@lbl.gov
+  biomcp:
+    name: biomcp
+    command: uv
+    args:
+    - run
+    - --with
+    - biomcp-python
+    - biomcp
+    - run
+  pubmed-mcp:
+    name: pubmed-mcp
+    command: uv
+    args:
+    - run
+    - --with
+    - git+https://github.com/chrismannina/pubmed-mcp@main
+    - -m
+    - src.main
+    env:
+      PUBMED_API_KEY: 01eec0a16472164c6d69163bd28368311808
+      PUBMED_EMAIL: justinreese@lbl.gov
+server_combinations:
+- - artl
+- - simple-pubmed
+- - biomcp
+- - pubmed-mcp
