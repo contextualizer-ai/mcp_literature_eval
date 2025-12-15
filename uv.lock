@@ -2817,7 +2817,7 @@ dev = [
 requires-dist = [
     { name = "linkml-runtime", specifier = ">=1.9.4" },
     { name = "matplotlib", specifier = ">=3.10.6" },
-    { name = "metacoder", git = "https://github.com/ai4curation/metacoder.git?branch=literature-eval-enhancements" },
+    { name = "metacoder", git = "https://github.com/ai4curation/metacoder.git?branch=fix-gemini-cli-invocation" },
     { name = "pypdf", specifier = ">=6.0.0" },
     { name = "scipy", specifier = ">=1.15.3" },
     { name = "seaborn", specifier = ">=0.13.2" },
@@ -2858,7 +2858,7 @@ wheels = [
 [[package]]
 name = "metacoder"
 version = "0.1.0"
-source = { git = "https://github.com/ai4curation/metacoder.git?branch=literature-eval-enhancements#87d556d1133e96c4e6cafd0a6c9272b920f37a1e" }
+source = { git = "https://github.com/ai4curation/metacoder.git?branch=fix-gemini-cli-invocation#8d45b4d7c3f3d6eb752fff016575e5757b519759" }
 dependencies = [
     { name = "click" },
     { name = "deepeval" },
