@@ -14,7 +14,7 @@ description: 'Evaluations for multiple pubmed MCPs using codex agent with gpt-5-
   '
 coders:
   codex:
-    sandbox_permissions: []  # Disable filesystem access to prevent answer file cheating
+    disable_shell_tool: true  # MCP-only mode - prevents filesystem access
 models:
   gpt-5.1-codex-mini:
     provider: openai

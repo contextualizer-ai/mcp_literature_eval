@@ -149,3 +149,8 @@ dmypy.json
 .vscode
 .claude
 
+# Large model comparison results
+results/compare_models/
+
+# Local scripts
+scripts/
