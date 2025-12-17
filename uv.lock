@@ -2817,7 +2817,7 @@ dev = [
 requires-dist = [
     { name = "linkml-runtime", specifier = ">=1.9.4" },
     { name = "matplotlib", specifier = ">=3.10.6" },
-    { name = "metacoder", git = "https://github.com/ai4curation/metacoder.git?branch=fix-gemini-cli-invocation" },
+    { name = "metacoder", git = "https://github.com/ai4curation/metacoder.git?branch=codex-disable-shell-tool" },
     { name = "pypdf", specifier = ">=6.0.0" },
     { name = "scipy", specifier = ">=1.15.3" },
     { name = "seaborn", specifier = ">=0.13.2" },
@@ -2858,7 +2858,7 @@ wheels = [
 [[package]]
 name = "metacoder"
 version = "0.1.0"
-source = { git = "https://github.com/ai4curation/metacoder.git?branch=fix-gemini-cli-invocation#8d45b4d7c3f3d6eb752fff016575e5757b519759" }
+source = { git = "https://github.com/ai4curation/metacoder.git?branch=codex-disable-shell-tool#15999e8b597852d46770f4e7fdd85a81902e7130" }
 dependencies = [
     { name = "click" },
     { name = "deepeval" },

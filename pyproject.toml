@@ -89,4 +89,4 @@ extend-exclude = [
 ]
 
 [tool.uv.sources]
-metacoder = { git = "https://github.com/ai4curation/metacoder.git", branch = "fix-gemini-cli-invocation" }
+metacoder = { git = "https://github.com/ai4curation/metacoder.git", branch = "codex-disable-shell-tool" }

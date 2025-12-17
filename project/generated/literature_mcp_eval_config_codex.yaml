@@ -13,7 +13,8 @@ description: 'Evaluations for multiple pubmed MCPs using codex agent
 
   '
 coders:
-  codex: {}
+  codex:
+    disable_shell_tool: true  # MCP-only mode - prevents filesystem access
 models:
   gpt-5.1-codex-max:
     provider: openai
